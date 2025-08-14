@@ -25,23 +25,21 @@
         
         /* might add border to header idk */
         .account-box #header { position: relative; border-radius: 1em; background-color: var(--status-background); background-position: center; background-size: cover; aspect-ratio: 2; z-index: -1; }
-        .account-box #avatar { width: 160px; position: absolute; bottom: -96px; left: 8px; border-radius: 1em; box-shadow: 0 2px 8px -4px black; }
+        .account-box #avatar { width: 160px; position: absolute; bottom: -132px; left: 8px; border-radius: 1em; box-shadow: 0 2px 8px -4px black; }
         .account-box #name-box { margin-left: 180px; margin-bottom: 2em; }
         .account-box #display-name { margin-bottom: 0; }
         .account-box #account { color: var(--text-off); }
         .account-box #follow-box { margin: 1em 0; font-weight: 700; display: flex; gap: 2em; }
         .account-box #followers-count, .account-box #following-count { color: var(--accent); }
         
-        .status { display: flex; gap: 1em; }
+        .status { display: flex; gap: 1em; align-items: flex-start; }
         .status #avatar { width: 64px; }
         .status #account { color: var(--text-off); }
-        .status #reblogger-account-info { color: var(--text-off); font-size: smaller; }
-        .status #reblogger-account { color: var(--text-off); }
+        .status #reblogger-account-info { color: grey; font-size: smaller; }
         .status #images img { max-width: 100%; }
         .status p:first-child { margin-top: 0; }
         .status p:last-child { margin-bottom: 0; }
         .status #status-main { flex: 1; width: 0; padding: 1em; display: flex; flex-direction: column; gap: 1em; background: white; }
-        .status #status-sidebar button { border: 0; background: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 0.2em; font: inherit; color: inherit; }
 
         #button-log-in { cursor: pointer; font: inherit; color: var(--accent); font-weight: 700; background: none; border: 2px solid var(--accent); padding: 5px 0 2px; border-radius: 5px; }
     </style>
@@ -147,14 +145,7 @@
             
             const response = await fetch(targetURL + endpoint, payload);
 
-            if (response.status == 200) {
-                
-                return response;
-                
-            } else {
-                
-                return null;
-            }
+            return response.ok ? response : null;
         }
 
         async function insertAccount(account) {
@@ -449,12 +440,8 @@
 
     <template id="template-status">
         <div class="status">
-
-            <div id="status-sidebar">
                 
-                <img id="avatar">
-                
-            </div>
+            <img id="avatar">
             
             <div id="status-main">
                 <div id="reblogger-account-info">
@@ -478,15 +465,17 @@
             <div id="name-box">
                 <h2 id="display-name"></h2>
                 <a id="account"></a>
+                <div id="follow-box">
+                    <div>Followers: <span id="followers-count"></span></div>
+                    <div>Following: <span id="following-count"></span></div>
+                </div>
             </div>
             <div id="note"></div>
-            <div id="follow-box">
-                <div>Followers: <span id="followers-count"></span></div>
-                <div>Following: <span id="following-count"></span></div>
-            </div>
         </div>
     </template>
 
+
+    
     <header class="centerizer">
 
         <nav class="width-center">
