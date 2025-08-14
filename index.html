@@ -24,7 +24,7 @@
         #content-insert { display: flex; flex-direction: column; gap: 1em; }
         
         /* might add border to header idk */
-        .account-box { display: flex; gap: 1em; align-items: flex-start; padding: 1em; background-color: black; color: white; background-position: center; background-size: cover; aspect-ratio: 2; }
+        .account-box { display: flex; gap: 1em; align-items: flex-start; padding: 1em; background-color: black; color: white; background-position: center; background-size: cover; }
         .account-box #avatar { width: 160px; }
         .account-box #display-name { margin-bottom: 0; }
         .account-box #follow-box { margin: 1em 0; font-weight: 700; display: flex; gap: 2em; }
@@ -151,7 +151,7 @@
 
             let acctEmbed = templateAccount.content.cloneNode(true);
 
-            acctEmbed.firstElementChild.style.backgroundImage = `linear-gradient(to bottom, #0008, #000b), url("${ account.header }")`;
+            acctEmbed.firstElementChild.style.backgroundImage = `linear-gradient(to bottom, #0008, #000b), url("${ account.header.includes("missing.png") ? account.avatar : account.header }")`;
 
             acctEmbed.getElementById("avatar").src                   = account.avatar;
             acctEmbed.getElementById("note").innerHTML               = embedEmojis(account.note, account.emojis); // account.note is never null, just empty, so this is ok :)
