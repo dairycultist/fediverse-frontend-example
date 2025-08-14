@@ -24,12 +24,11 @@
         #content-insert { display: flex; flex-direction: column; gap: 1em; }
         
         /* might add border to header idk */
-        .account-box { position: relative; padding: 1em; background-color: black; color: white; background-position: center; background-size: cover; aspect-ratio: 2; z-index: -1; }
+        .account-box { padding: 1em; background-color: black; color: white; background-position: center; background-size: cover; aspect-ratio: 2; z-index: -1; }
         .account-box #avatar { width: 160px; }
         .account-box #display-name { margin-bottom: 0; }
-        .account-box #account { color: var(--text-off); }
         .account-box #follow-box { margin: 1em 0; font-weight: 700; display: flex; gap: 2em; }
-        .account-box #followers-count, .account-box #following-count { color: var(--accent); }
+        .account-box #note { font-size: 0.9em; }
         
         .status { display: flex; gap: 1em; align-items: flex-start; }
         .status #avatar { width: 64px; }
@@ -39,8 +38,6 @@
         .status p:first-child { margin-top: 0; }
         .status p:last-child { margin-bottom: 0; }
         .status #status-main { flex: 1; width: 0; padding: 1em; display: flex; flex-direction: column; gap: 1em; background: white; }
-
-        #button-log-in { cursor: pointer; font: inherit; color: var(--accent); font-weight: 700; background: none; border: 2px solid var(--accent); padding: 5px 0 2px; border-radius: 5px; }
     </style>
 
     <script src="cookies.js"></script>
