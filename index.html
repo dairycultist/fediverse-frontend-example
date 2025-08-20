@@ -8,10 +8,7 @@
         
         body { margin: 0; font-family: "Hind", sans-serif; background: #e7e8ea; }
 
-        .centerizer { display: flex; align-items: flex-start; justify-content: center; gap: 2em; }
-        .width-center { width: 120ex; }
-
-        header { position: sticky; top: 0; background: var(--background); margin-bottom: 1em; }
+        header { height: 5em; display: flex; align-items: middle; padding-left: 1em; background: white; }
 
         a { color: #5fa9a2; text-decoration-thickness: 0.5px; text-decoration-style: dotted; }
         img.emoji { height: 24px; vertical-align: middle; }
@@ -21,8 +18,9 @@
         nav button:disabled { padding-bottom: calc(0.5em - 2px); color: var(--accent); border-bottom: 2px solid var(--accent); font-weight: 700; }
         nav input { flex: 1; font: inherit; font-size: smaller; padding: 0.5em; border: 0; border-left: 1px solid var(--border); background: none; color: inherit; }
 
-        #content-insert { display: flex; flex-direction: column; gap: 1em; }
-        
+        main { display: flex; flex-direction: column; gap: 1em; padding: 1em; box-sizing: border-box; flex: 1; overflow-y: scroll; height: calc(100vh - 5em); }
+        aside { width: 300px; background: #dadbdf; border-right: 1px solid rgb(196, 196, 198); }
+
         /* might add border to header idk */
         .account-box { display: flex; gap: 1em; align-items: flex-start; padding: 1em; background-color: black; color: white; background-position: center; background-size: cover; }
         .account-box #avatar { width: 160px; }
@@ -34,8 +32,8 @@
         .status #avatar { width: 64px; border-radius: 100%; }
         .status #account { color: var(--text-off); }
         .status #reblogger-account-info { color: grey; font-size: smaller; }
-        .status #images { border-radius: 0.5em; overflow: hidden; display: flex; flex-direction: column; }
-        .status #images img { width: 100%; }
+        .status #images { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+        .status #images img { max-width: 100%; max-height: calc(100vh - 10em); border-radius: 0.5em; }
         .status p:first-child { margin-top: 0; }
         .status p:last-child { margin-bottom: 0; }
         .status #status-main { flex: 1; width: 0; padding: 1em; display: flex; flex-direction: column; gap: 1em; background: white; }
@@ -438,12 +436,9 @@
 
     <template id="template-status">
         <div class="status">
-            
-            <div style="flex: 2;">
-                <div id="images"></div>
-            </div>
 
-            <div style="flex: 1; padding: 1em; border-radius: 0.5em; background: white;">
+            <div style="width: 400px; padding: 1em; border-radius: 0.5em; background: white;">
+
                 <div id="reblogger-account-info">
                     ⤷ Reblogged by <a id="reblogger-account"></a>
                 </div>
@@ -455,7 +450,10 @@
                 <div id="content"></div>
 
                 <!-- comments here -->
+
             </div>
+
+            <div id="images"></div>
             
         </div>
     </template>
@@ -477,9 +475,9 @@
 
 
     
-    <header class="centerizer">
+    <header>
 
-        <nav class="width-center">
+        <nav>
             <button id="button-account">Log In With Mastodon</button>
             <button id="button-load-statuses-public">Global</button>
             <button id="button-load-statuses-following">Following</button>
@@ -488,11 +486,13 @@
         
     </header>
 
-    <main class="centerizer">
+    <div style="display: flex;">
 
-        <div class="width-center" id="content-insert"></div>
+        <aside></aside>
 
-    </main>
+        <main id="content-insert"></main>
+
+    </div>
     
 </body>
 </html>
