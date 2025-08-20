@@ -6,10 +6,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
         
-        body { margin: 0; font-family: "Hind", sans-serif; color: var(--text); background: #b8bbbf; }
+        body { margin: 0; font-family: "Hind", sans-serif; background: #e7e8ea; }
 
         .centerizer { display: flex; align-items: flex-start; justify-content: center; gap: 2em; }
-        .width-center { width: 90ex; }
+        .width-center { width: 120ex; }
 
         header { position: sticky; top: 0; background: var(--background); margin-bottom: 1em; }
 
@@ -30,11 +30,12 @@
         .account-box #follow-box { margin: 1em 0; font-weight: 700; display: flex; gap: 2em; }
         .account-box #note { font-size: 0.9em; }
         
-        .status { display: flex; gap: 1em; align-items: flex-start; }
-        .status #avatar { width: 64px; }
+        .status { display: flex; gap: 1em; }
+        .status #avatar { width: 64px; border-radius: 100%; }
         .status #account { color: var(--text-off); }
         .status #reblogger-account-info { color: grey; font-size: smaller; }
-        .status #images img { max-width: 100%; }
+        .status #images { border-radius: 0.5em; overflow: hidden; display: flex; flex-direction: column; }
+        .status #images img { width: 100%; }
         .status p:first-child { margin-top: 0; }
         .status p:last-child { margin-bottom: 0; }
         .status #status-main { flex: 1; width: 0; padding: 1em; display: flex; flex-direction: column; gap: 1em; background: white; }
@@ -437,18 +438,23 @@
 
     <template id="template-status">
         <div class="status">
-                
-            <img id="avatar">
             
-            <div id="status-main">
+            <div style="flex: 2;">
+                <div id="images"></div>
+            </div>
+
+            <div style="flex: 1; padding: 1em; border-radius: 0.5em; background: white;">
                 <div id="reblogger-account-info">
                     ⤷ Reblogged by <a id="reblogger-account"></a>
                 </div>
-                <div style="color: grey;">
-                    <a id="display-name"></a> said:
+                <div style="color: grey; display: flex; gap: 1em; align-items: center;">
+                    <img id="avatar">
+                    <div><a id="display-name"></a> said:</div>
                 </div>
+                <br>
                 <div id="content"></div>
-                <div id="images"></div>
+
+                <!-- comments here -->
             </div>
             
         </div>
